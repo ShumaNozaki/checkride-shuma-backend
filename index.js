@@ -12,8 +12,8 @@ const upload = multer({ dest: 'uploads/' });
 app.use(cors());
 
 const speechToText = new SpeechToTextV1({
-  authenticator: new IamAuthenticator({ apikey: 'APIキー' }),
-  serviceUrl: 'https://api.jp-tok.speech-to-text.watson.cloud.ibm.com/instances/xxxx',
+  authenticator: new IamAuthenticator({ apikey: 'WATSON_API_KEY' }),
+  serviceUrl: 'WATSON_UR',
 });
 
 app.post('/api/speech-to-text', upload.single('audio'), async (req, res) => {
