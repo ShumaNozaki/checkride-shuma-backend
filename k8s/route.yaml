@@ -1,12 +1,12 @@
 apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
-  name: checkride-shuma-backend
+  name: checkride-shuma-b
 spec:
   tls:
     termination: edge
   to:
     kind: Service
-    name: checkride-shuma-backend
+    name: checkride-shuma-b
     weight: 100
   wildcardPolicy: None

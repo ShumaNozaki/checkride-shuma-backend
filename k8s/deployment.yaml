@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: checkride-shuma-backend
+  name: checkride-shuma-b
 spec:
   replicas: 1
   selector:
@@ -19,8 +19,8 @@ spec:
       dnsPolicy: ClusterFirst
       schedulerName: default-scheduler
       containers:
-      - name: checkride-shuma-backend
-        image: checkride-shuma-backend
+      - name: checkride-shuma-b
+        image: checkride-shuma-b
         ports:
         - name: http
           protocol: TCP
