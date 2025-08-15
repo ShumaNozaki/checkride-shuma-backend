@@ -184,6 +184,7 @@ router.post('/transcribe', upload.single('audio'), async (req, res) => {
       model: 'ja-JP_BroadbandModel',
       smartFormatting: true,
       speakerLabels: true, // 話者ラベルON
+      smartFormatting: true      // ← 追加：句読点・日付・数字を自動整形
     };
 
     const response = await speechToText.recognize(params);
