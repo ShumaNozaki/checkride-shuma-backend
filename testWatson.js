@@ -2,8 +2,8 @@ import fs from 'fs';
 import fetch from 'node-fetch';
 
 async function callWatson() {
-  const apiKey = 'YOUR_API_KEY';
-  const serviceUrl = 'https://api.jp-tok.speech-to-text.watson.cloud.ibm.com/v1/recognize';
+  const apiKey = 'SPEECH_TO_TEXT_APIKEY';
+  const serviceUrl = 'SPEECH_TO_TEXT_URL';
 
   const response = await fetch(serviceUrl, {
     method: 'POST',

@@ -12,8 +12,8 @@
 // app.use(cors());
 
 // const speechToText = new SpeechToTextV1({
-//   authenticator: new IamAuthenticator({ apikey: 'WATSON_API_KEY' }),
-//   serviceUrl: 'WATSON_UR',
+//   authenticator: new IamAuthenticator({ apikey: 'SPEECH_TO_TEXT_APIKEY' }),
+//   serviceUrl: 'SPEECH_TO_TEXT_URLR',
 // });
 
 // app.post('/api/speech-to-text', upload.single('audio'), async (req, res) => {
@@ -82,8 +82,8 @@ app.use(cors());
 
 // Watson Speech to Text SDK 初期化
 const speechToText = new SpeechToTextV1({
-  authenticator: new IamAuthenticator({ apikey: process.env.WATSON_API_KEY }),
-  serviceUrl: process.env.WATSON_URL,
+  authenticator: new IamAuthenticator({ apikey: process.env.SPEECH_TO_TEXT_APIKEY }),
+  serviceUrl: process.env.SPEECH_TO_TEXT_URL,
 });
 
 app.post('/api/speech-to-text', upload.single('audio'), async (req, res) => {
