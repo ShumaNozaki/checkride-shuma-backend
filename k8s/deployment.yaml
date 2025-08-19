@@ -24,7 +24,7 @@ spec:
         ports:
         - name: http
           protocol: TCP
-          containerPort: 3000
+          containerPort: 4000
         env:
         - name: SPEECH_TO_TEXT_APIKEY
           valueFrom:

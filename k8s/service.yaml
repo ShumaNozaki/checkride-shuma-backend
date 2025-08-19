@@ -7,7 +7,7 @@ spec:
     - name: http
       port: 80
       protocol: TCP
-      targetPort: 3000
+      targetPort: 4000
   selector:
     app.kubernetes.io/instance: app-instance
     app.kubernetes.io/name: app
