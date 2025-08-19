@@ -1,6 +1,0 @@
-{
-  "error": "Unauthorized",
-  "code": 401,
-  "more_info": "https://cloud.ibm.com/docs/watson?topic=watson-authorization-error",
-  "trace": "6c781fed-2f27-4302-9f37-4548939774c3"
-}

@@ -1,24 +1,24 @@
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+// const express = require('express');
+// const cors = require('cors');
+// require('dotenv').config();
 
-const speechRoutes = require('./routes/speechtotext');
+// const speechRoutes = require('./routes/speechtotext');
 
-const app = express();
-app.use(cors());             // CORSを有効化（フロントからのアクセス許可）
-app.use(express.json());     // JSON形式のリクエストをパース
+// const app = express();
+// app.use(cors());             // CORSを有効化（フロントからのアクセス許可）
+// app.use(express.json());     // JSON形式のリクエストをパース
 
-// APIルートを登録
-app.use('/api/speech', speechRoutes);
+// // APIルートを登録
+// app.use('/api/speech', speechRoutes);
 
-app.get('/', (req, res) => {
-  res.status(200).send('OK');
-});
-// サーバー起動
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// app.get('/', (req, res) => {
+//   res.status(200).send('OK');
+// });
+// // サーバー起動
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//   console.log(`Server running on port ${PORT}`);
+// });
 
 
 // const express = require('express');
@@ -89,3 +89,30 @@ app.listen(PORT, () => {
 // const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
+// サーバー起動のため
+
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+// ルーター読み込み
+const speechRoutes = require('./routes/speechtotext');
+
+
+const app = express();
+app.use(cors());
+app.use(express.json());
+
+// /api/speech にルーターを登録
+app.use('/api/speech', speechRoutes);
+
+// 動作確認用ルート
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
+
+// サーバー起動
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
