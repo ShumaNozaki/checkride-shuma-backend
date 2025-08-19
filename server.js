@@ -1,21 +1,21 @@
-// const express = require('express');
-// const cors = require('cors');
-// require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
 
-// const speechRoutes = require('./routes/speechtotext');
+const speechRoutes = require('./routes/speechtotext');
 
-// const app = express();
-// app.use(cors());             // CORSを有効化（フロントからのアクセス許可）
-// app.use(express.json());     // JSON形式のリクエストをパース
+const app = express();
+app.use(cors());             // CORSを有効化（フロントからのアクセス許可）
+app.use(express.json());     // JSON形式のリクエストをパース
 
-// // APIルートを登録
-// app.use('/api/speech', speechRoutes);
+// APIルートを登録
+app.use('/api/speech', speechRoutes);
 
-// // サーバー起動
-// const PORT = process.env.PORT || 3000;
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
+// サーバー起動
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
 
 
 // const express = require('express');
@@ -69,19 +69,20 @@
 //   console.log(`Server running on port ${PORT}`);
 // });
 
-const express = require('express');
-const cors = require('cors');
-require('dotenv').config();
+// const express = require('express');
+// const cors = require('cors');
+// const multer = require('multer');
+// require('dotenv').config();
 
-const transcribeRoutes = require('./routes/speechtotext'); // ← 以前動いていたルートを使う
+// const transcribeRoutes = require('./routes/speechtotext'); // ← 以前動いていたルートを使う
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+// const app = express();
+// app.use(cors());
+// app.use(express.json());
 
-// POST /transcribe に対して Multer 経由で音声ファイルを受け取る
-app.use('/transcribe', transcribeRoutes);
+// // POST /transcribe に対して Multer 経由で音声ファイルを受け取る
+// app.use('/transcribe', transcribeRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
