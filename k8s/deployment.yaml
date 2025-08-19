@@ -46,7 +46,7 @@ spec:
           failureThreshold: 3
           httpGet:
             port: http
-            path: /api/speech
+            path: /
             scheme: HTTP
           periodSeconds: 10
           successThreshold: 1
@@ -55,7 +55,7 @@ spec:
           failureThreshold: 3
           httpGet:
             port: http
-            path: /api/speech
+            path: /
             scheme: HTTP
           periodSeconds: 10
           successThreshold: 1

@@ -11,6 +11,9 @@ app.use(express.json());     // JSON形式のリクエストをパース
 // APIルートを登録
 app.use('/api/speech', speechRoutes);
 
+app.get('/', (req, res) => {
+  res.status(200).send('OK');
+});
 // サーバー起動
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
