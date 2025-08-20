@@ -4,7 +4,7 @@ const request = require('supertest');
 const express = require('express');
 const fs = require('fs');
 const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH);
+ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH || '/usr/bin/ffmpeg');
 const path = require('path');
 const router = require('../routes/speechtotext');
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
