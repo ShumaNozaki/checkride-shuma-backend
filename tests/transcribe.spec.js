@@ -1,3 +1,5 @@
+
+require('dotenv').config();
 const request = require('supertest');
 const express = require('express');
 const fs = require('fs');
