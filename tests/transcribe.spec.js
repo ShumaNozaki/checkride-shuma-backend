@@ -8,10 +8,20 @@ const app = express();
 app.use(express.json());
 app.use('/', router);
 
+const speechToText = new SpeechToTextV1({
+  authenticator: new IamAuthenticator({
+    apikey: process.env.SPEECH_TO_TEXT_APIKEY, // 環境変数からAPIキーを取得
+  }),
+  serviceUrl: process.env.SPEECH_TO_TEXT_URL, // 環境変数からURLを取得
+});
+
+
 describe('POST /transcribe', () => {
   it('APIがキーワードを受け取り、抽出結果を返すこと', async () => {
     const audioPath = path.join(__dirname, 'ja-JP_Broadband-sample.wav'); // テスト用の音声ファイル
     const keywords = '音声,ディープ';
+
+    console.log()
 
     const response = await request(app)
       .post('/transcribe')
