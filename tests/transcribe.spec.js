@@ -7,6 +7,8 @@ const path = require('path');
 const router = require('../routes/speechtotext');
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
+const ffmpeg = require('fluent-ffmpeg');
+ffmpeg.setFfmpegPath('/opt/homebrew/bin/ffmpeg');
 
 
 const app = express();
