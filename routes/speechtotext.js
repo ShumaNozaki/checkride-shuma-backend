@@ -50,10 +50,15 @@ router.post('/transcribe', upload.single('audio'), async (req, res) => {
     // キーワード抽出（前後5文字、空白を無視）
     const matches = [];
     if (keywords.length) {
+      // transcript を単語配列に変換（空白で分割）
+      const words = transcript.split(/\s+/);
+      
       keywords.forEach(keyword => {
         const regex = new RegExp(keyword, 'g');
         let match;
         while ((match = regex.exec(transcript)) !== null) {
+          const startIndex = match.index;
+          const endIndex = startIndex + keyword.length;
 
           const beforeText = transcript.slice(0, match.index).replace(/\s+/g, ''); // 0からキーワードの開始位置までを切り出し空白を削除
           const afterText  = transcript.slice(match.index + keyword.length).replace(/\s+/g, ''); // キーワードの終了位置から最後までを切り出し空白を削除
@@ -61,10 +66,22 @@ router.post('/transcribe', upload.single('audio'), async (req, res) => {
           const beforeSlice = beforeText.slice(-5); // 先ほど切り出したキーワードの前5文字を取り出す
           const afterSlice  = afterText.slice(0, 5); // 先ほど切り出したキーワードの後5文字を取り出す
 
+           // 単語位置を計算
+          let charCount = 0;
+          let wordPos = 0;
+          for (let i = 0; i < words.length; i++) {
+            charCount += words[i].length + 1; // +1 は空白
+            if (charCount > startIndex) {
+              wordPos = i + 1; // 1始まり
+              break;
+            }
+          }
+
           matches.push({
             keyword,
             startIndex: match.index, // キーワードの開始位置の取得
             endIndex: match.index + keyword.length, // キーワードの終了位置の取得
+            wordPosition: wordPos,
             snippet: beforeSlice + keyword + afterSlice // 前5文字 + キーワード + 後5文字
           });
         }
