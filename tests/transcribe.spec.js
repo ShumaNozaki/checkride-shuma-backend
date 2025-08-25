@@ -10,10 +10,6 @@ const { IamAuthenticator } = require('ibm-watson/auth');
 
 const request = require('supertest');
 
-// const fs = require('fs');
-// const ffmpeg = require('fluent-ffmpeg');
-// ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH || '/usr/bin/ffmpeg');
-
 const path = require('path');
 const router = require('../routes/speechtotext');
 
@@ -21,14 +17,6 @@ const router = require('../routes/speechtotext');
 const app = express();
 app.use(express.json());
 app.use('/', router);
-
-// const speechToText = new SpeechToTextV1({
-//   authenticator: new IamAuthenticator({
-//     apikey: process.env.SPEECH_TO_TEXT_APIKEY, // 環境変数からAPIキーを取得
-//   }),
-//   serviceUrl: process.env.SPEECH_TO_TEXT_URL, // 環境変数からURLを取得
-// });
-
 
 describe('POST /transcribe', () => {
   it('APIがキーワードを受け取り、抽出結果を返すこと', async () => {
