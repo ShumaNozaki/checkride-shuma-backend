@@ -1,27 +1,33 @@
+// 音声認識の単体テスト
+// POST /transcribe が正しく文字起こし・キーワード抽出を行うかをテスト
 
-require('dotenv').config();
-const request = require('supertest');
 const express = require('express');
-const fs = require('fs');
-const ffmpeg = require('fluent-ffmpeg');
-ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH || '/usr/bin/ffmpeg');
-const path = require('path');
-const router = require('../routes/speechtotext');
+require('dotenv').config();
+
+// API接続
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1');
 const { IamAuthenticator } = require('ibm-watson/auth');
 
+const request = require('supertest');
 
+// const fs = require('fs');
+// const ffmpeg = require('fluent-ffmpeg');
+// ffmpeg.setFfmpegPath(process.env.FFMPEG_PATH || '/usr/bin/ffmpeg');
 
+const path = require('path');
+const router = require('../routes/speechtotext');
+
+// テストようにサーバーを作成
 const app = express();
 app.use(express.json());
 app.use('/', router);
 
-const speechToText = new SpeechToTextV1({
-  authenticator: new IamAuthenticator({
-    apikey: process.env.SPEECH_TO_TEXT_APIKEY, // 環境変数からAPIキーを取得
-  }),
-  serviceUrl: process.env.SPEECH_TO_TEXT_URL, // 環境変数からURLを取得
-});
+// const speechToText = new SpeechToTextV1({
+//   authenticator: new IamAuthenticator({
+//     apikey: process.env.SPEECH_TO_TEXT_APIKEY, // 環境変数からAPIキーを取得
+//   }),
+//   serviceUrl: process.env.SPEECH_TO_TEXT_URL, // 環境変数からURLを取得
+// });
 
 
 describe('POST /transcribe', () => {
@@ -37,16 +43,17 @@ describe('POST /transcribe', () => {
       .field('language', 'ja')
       .attach('audio', audioPath);
 
-
+    // デバック出力
     console.log('📄 Transcript:', response.body.transcript);
     console.log('🔍 Matches:', response.body.matches);
 
+    // レスポンス検証
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty('transcript');
     expect(response.body).toHaveProperty('matches');
     expect(Array.isArray(response.body.matches)).toBe(true);
 
+    // キーワードが正しく抽出されているか
     const matchKeywords = response.body.matches.map(m => m.keyword);
-    expect(matchKeywords).toEqual(expect.arrayContaining(['音声', 'ディープ']));}, 15000); // ← タイムアウトを15秒に延長
+    expect(matchKeywords).toEqual(expect.arrayContaining(['音声', 'ディープ']));}, 15000); // タイムアウト15秒
   });
-// });

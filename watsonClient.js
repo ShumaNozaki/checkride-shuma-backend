@@ -1,6 +1,6 @@
 const SpeechToTextV1 = require('ibm-watson/speech-to-text/v1.js');
 const { IamAuthenticator } = require('ibm-watson/auth/index.js');
-require('dotenv').config();
+require('dotenv').config(); // 環境変数を読み込み
 
 const speechToText = new SpeechToTextV1({
   authenticator: new IamAuthenticator({
@@ -9,4 +9,4 @@ const speechToText = new SpeechToTextV1({
   serviceUrl: process.env.SPEECH_TO_TEXT_URL, // 環境変数からURLを取得
 });
 
-module.exports = speechToText;
+module.exports = speechToText; // speechtotextが使えるようにしている
